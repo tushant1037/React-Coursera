@@ -7,7 +7,7 @@ import {baseUrl} from '../shared/baseUrl';
 
 
 
-function RenderComments({comments, addComment, dishId}) {
+function RenderComments({comments, postComment, dishId}) {
         if (comments == null) {
             return (<div></div>)
         }
@@ -31,7 +31,7 @@ function RenderComments({comments, addComment, dishId}) {
                 <h4> Comments </h4>
                 <ul className='list-unstyled'>
                     {cmnts}
-                    <CommentForm dishId={dishId} addComment={addComment} />
+                    <CommentForm dishId={dishId} postComment={postComment} />
                 </ul>
 
             </div>
@@ -82,7 +82,7 @@ function RenderComments({comments, addComment, dishId}) {
         }
         const dishItem = <RenderDish dish={props.dish}/>
         const commentItem = <RenderComments comments={props.comments} 
-        addComment = {props.addComment}
+        postComment = {props.postComment}
         dishId = {props.dish.id}/>
 return (
             <div className='container'>
@@ -131,7 +131,7 @@ class CommentForm extends Component {
     
         handleSubmit(values) {
             this.toggleModal();
-            this.props.addComment(this.props.dishId, values.rating, values.author, values.comment)
+            this.props.postComment(this.props.dishId, values.rating, values.author, values.comment)
             //console.log("Current State is: "+ JSON.stringify(values));
             //alert("Current State is: "+ JSON.stringify(values))
         }
