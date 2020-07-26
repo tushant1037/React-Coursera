@@ -1,11 +1,14 @@
 import React from 'react';
 import { Breadcrumb, BreadcrumbItem, Card, CardBody, CardHeader, Media, } from 'reactstrap';
 import { Link } from 'react-router-dom';
+import { FadeTransform, Fade, Stagger } from 'react-animation-components';
+
 
 
 function RenderLeader({ leader }) {
 
     return (
+        <Fade in>
         <Media key={leader.id} className="mt-4">
             <img src={leader.image} alt={leader.name} className="mr-4" />
             <Media body className="mr-1">
@@ -14,13 +17,14 @@ function RenderLeader({ leader }) {
                 <p className="mt-4">{leader.description}</p>
             </Media>
         </Media>
+        </Fade>
     );
 
 }
 
 
 function About(props) {
-    const leaders = props.leaders.map((leader) => {
+    const leaders = props.leaders.leaders.map((leader) => {
         return (
             <RenderLeader leader={leader} />
         );
@@ -84,7 +88,9 @@ function About(props) {
                 </div>
                 <div className="col-12">
                     <Media list>
-                    {leaders}
+                        <Stagger in>
+                            {leaders}
+                        </Stagger>
                     </Media>
                 </div>
             </div>
